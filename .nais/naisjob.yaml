@@ -1,0 +1,34 @@
+apiVersion: nais.io/v1
+kind: Naisjob
+metadata:
+  labels:
+    team: nada
+  name: tester-soda
+  namespace: nada
+spec:
+  image: ghcr.io/navikt/soda-test:7
+  env:
+    - name: SODA_CONFIG
+      value: /var/run/configmaps/soda-config/config.yaml
+    - name: SODA_CHECKS_FOLDER
+      value: /var/run/configmaps/soda-checks
+  schedule: '11 5 * * *'
+  failedJobsHistoryLimit: 1
+  successfulJobsHistoryLimit: 1
+  backoffLimit: 1
+  concurrencyPolicy: Forbid
+  filesFrom:
+    - configmap: soda-checks
+    - configmap: soda-config
+  gcp:
+    bigQueryDatasets:
+    - name: doc_demo
+      permission: READ
+    - name: datastream_nada
+      permission: READ
+    permissions:
+    - resource:
+        apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+        kind: Project
+        name: nada-dev-db2e
+      role: roles/bigquery.readSessionUser
