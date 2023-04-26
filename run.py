@@ -38,4 +38,3 @@ if __name__ == "__main__":
     errors = [e.get_dict() for e in s.get_checks_warn_or_fail()]
     if len(errors) > 0:
         post_slack_message(errors)
-        print("errors", errors)
