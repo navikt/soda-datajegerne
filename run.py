@@ -1,5 +1,7 @@
 import os
+import json
 from soda.scan import Scan
+from slack_sdk import WebClient
 
 def run_scan(s: Scan, f: str, dir: str) -> list:
     dataset = f.split(".")[0]
@@ -8,10 +10,15 @@ def run_scan(s: Scan, f: str, dir: str) -> list:
     s.execute()
     return s.get_checks_warn_or_fail()
 
+def post_slack_message(errors: list) -> None:
+    slack_token = os.environ["SLACK_TOKEN"]
+    slack_channel = os.environ["SLACK_CHANNEL"]
+    client = WebClient(token=slack_token)
+    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel, text=json.dumps([e for e in errors]))
 
 if __name__ == "__main__":
     s = Scan()
-    
+
     config_path = os.environ["SODA_CONFIG"]
     s.add_configuration_yaml_file(file_path=config_path)
 
@@ -22,4 +29,5 @@ if __name__ == "__main__":
         errors += errors_new
 
     if len(errors) > 0:
+        post_slack_message(errors)
         print("errors", errors)
