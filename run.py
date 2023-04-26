@@ -29,7 +29,7 @@ def post_slack_message(errors: list) -> None:
 def convert_errors() -> list:
     out = {}
     for e in s.get_checks_warn_or_fail():
-        if e["identity"] not in out.keys():
+        if e.get_dict()["identity"] not in out.keys():
             out[e["identity"]] = e.get_dict()
     return [out[key] for key in out.keys()]
 
