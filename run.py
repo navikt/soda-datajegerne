@@ -26,6 +26,13 @@ def post_slack_message(errors: list) -> None:
                             blocks=[create_slack_block(e) for e in errors],
                             icon_emoji=":cup_with_straw:")
 
+def convert_errors() -> list:
+    out = {}
+    for e in s.get_checks_warn_or_fail():
+        if e["identity"] not in out.keys():
+            out[e["identity"]] = e.get_dict()
+    return [out[key] for key in out.keys()]
+
 if __name__ == "__main__":
     s = Scan()
 
@@ -36,6 +43,6 @@ if __name__ == "__main__":
     for f in os.listdir(checks_path):
         run_scan(s, f, checks_path)
 
-    errors = [e.get_dict() for e in s.get_checks_warn_or_fail()]
+    errors = convert_errors()
     if len(errors) > 0:
         post_slack_message(errors)
