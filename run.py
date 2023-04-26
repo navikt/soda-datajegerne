@@ -23,7 +23,9 @@ def post_slack_message(errors: list) -> None:
     slack_token = os.environ["SLACK_TOKEN"]
     slack_channel = os.environ["SLACK_CHANNEL"]
     client = WebClient(token=slack_token)
-    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel, blocks=[create_slack_block(e) for e in errors])
+    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel, 
+                            blocks=[create_slack_block(e) for e in errors],
+                            icon_emoji=":cup_with_straw:")
 
 if __name__ == "__main__":
     s = Scan()
@@ -34,8 +36,7 @@ if __name__ == "__main__":
     errors = []
     checks_path = os.environ["SODA_CHECKS_FOLDER"]
     for f in os.listdir(checks_path):
-        errors_new = run_scan(s, f, checks_path)
-        errors += errors_new
+        errors += run_scan(s, f, checks_path)
 
     if len(errors) > 0:
         post_slack_message(errors)
