@@ -15,7 +15,7 @@ The soda config and the soda check files needs to be mounted into the container 
 
 You will also need additional [project level iam roles](https://github.com/navikt/nada-soda/blob/main/.nais/naisjob.yaml#L32-L47) for the naisjob service account in order to be allowed to perform the soda checks.
 
-Note: The script requires that a datasource name matches the file name for the corresponding data quality tests, e.g. [./local/doc_demo](https://github.com/navikt/nada-soda/tree/main/.local/soda-checks) must match the datasource name doc_demo in the [connection config](https://github.com/navikt/nada-soda/blob/main/.local/soda-config/config.yaml#L1).
+Note: The script requires that a datasource name matches the file name for the corresponding data quality tests, e.g. [./local/soda-checks/doc_demo.yaml](https://github.com/navikt/nada-soda/tree/main/.local/soda-checks) without file extension must match the datasource name doc_demo in the [connection config](https://github.com/navikt/nada-soda/blob/main/.local/soda-config/config.yaml#L1).
 
 ### Required environment variables
 - `SODA_CONFIG`: Path to soda config file
