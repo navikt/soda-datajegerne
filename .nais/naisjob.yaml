@@ -25,14 +25,14 @@ spec:
   envFrom:
     - secret: slack-token
   gcp:
-    bigQueryDatasets:
-    - name: doc_demo
-      permission: READ
-    - name: datastream_nada
-      permission: READ
     permissions:
     - resource:
         apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
         kind: Project
         name: nada-dev-db2e
       role: roles/bigquery.readSessionUser
+    - resource:
+        apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
+        kind: Project
+        name: nada-dev-db2e
+      role: roles/bigquery.dataViewer
