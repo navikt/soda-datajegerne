@@ -21,7 +21,8 @@ def post_slack_message(errors: list) -> None:
     slack_token = os.environ["SLACK_TOKEN"]
     slack_channel = os.environ["SLACK_CHANNEL"]
     client = WebClient(token=slack_token)
-    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel, 
+    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel,
+                            text="Soda data quality report",
                             blocks=[create_slack_block(e) for e in errors],
                             icon_emoji=":cup_with_straw:")
 
