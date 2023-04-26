@@ -13,6 +13,8 @@ All of the above requirements must be configured with environment variables as d
 
 The soda config and the soda check files needs to be mounted into the container environment on nais. In this example these configurations files are mounted from configmaps deployed together with the naisjob to the cluster. See [.nais folder](https://github.com/navikt/nada-soda/tree/main/.nais) for example on how to do this.
 
+You will also need additional [project level iam roles](https://github.com/navikt/nada-soda/blob/main/.nais/naisjob.yaml#L32-L47) for the naisjob service account in order to be allowed to perform the soda checks.
+
 ### Required environment variables
 - `SODA_CONFIG`: Path to soda config file
 - `SODA_CHECKS_FOLDER`: Path to folder containing soda check files for BigQuery datasets
