@@ -8,13 +8,13 @@ def run_scan(s: Scan, f: str, dir: str) -> list:
     s.set_data_source_name(dataset)
     s.add_sodacl_yaml_file(f"{dir}/{f}")
     s.execute()
-    return s.get_checks_warn_or_fail()
+    return [e.get_dict() for e in s.get_checks_warn_or_fail()]
 
 def post_slack_message(errors: list) -> None:
     slack_token = os.environ["SLACK_TOKEN"]
     slack_channel = os.environ["SLACK_CHANNEL"]
     client = WebClient(token=slack_token)
-    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel, text=json.dumps([e for e in errors]))
+    client.chat_postMessage(channel=slack_channel if slack_channel.startswith("#") else "#"+slack_channel, text=json.dumps(errors))
 
 if __name__ == "__main__":
     s = Scan()
