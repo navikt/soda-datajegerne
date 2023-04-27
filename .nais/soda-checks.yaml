@@ -4,20 +4,7 @@ metadata:
   name: soda-checks
   namespace: nada
 data:
-  doc_demo.yaml: |
-    checks for go:
-      - missing_count(stringValue) = 0
-      - invalid_count(numericValue) = 0:
-          valid min: 1
-          valid max: 9
-      - duplicate_count(timestampValue) = 0
-    checks for py:
-      - missing_count(stringValue) = 0
-      - invalid_count(numericValue) = 0:
-          valid min: 1
-          valid max: 10
-      - duplicate_count(timestampValue) = 0
-  datastream_nada.yaml: |
+  platform_users.yaml: |
     checks for target_group:
       - row_count > 0 # Bør ikke slå ut
       - missing_count(team_id) = 0 # Bør slå ut
