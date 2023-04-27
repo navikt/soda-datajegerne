@@ -3,7 +3,7 @@ kind: Naisjob
 metadata:
   labels:
     team: nada
-  name: tester-soda
+  name: dataobs-soda-nada
   namespace: nada
 spec:
   image: {{ image }}

@@ -13,3 +13,13 @@ data:
           name: Find forbidden, missing, or wrong type
           warn:
             when required column missing: [team_id, naisteams]
+    checks for team_metrics:
+      - freshness(dato) <1d # Bør funke
+      - row_count > 100000 # Bør slå ut
+  dataproducts.yaml: |
+    checks for contact_point: # Sjekker referential integrity
+      - values in (id) must exist in dataproducts(dataset_id) # Denne bør feile    
+    
+    checks for datastories_materialized:
+      - row_count > 0 # Denne bør funke
+
