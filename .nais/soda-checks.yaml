@@ -18,6 +18,11 @@ data:
           valid max: 10
       - duplicate_count(timestampValue) = 0
   datastream_nada.yaml: |
-    checks for public_datasets:
-      - missing_count(dataproduct_id) = 1
-      - missing_count(id) = 0
+    checks for target_group:
+      - row_count > 0 # Bør ikke slå ut
+      - missing_count(team_id) = 0 # Bør slå ut
+      - freshness(dato) < 1d # Bør også slå ut
+      - schema
+          name: Find missing columns
+          warn:
+            when required column missing: [team_id, source_aligned, naisteams] # er det case sensitive?
