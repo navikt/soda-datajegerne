@@ -9,7 +9,7 @@ data:
       - row_count > 0 # Bør ikke slå ut
       - missing_count(team_id) = 0 # Bør slå ut
       - freshness(dato) < 1d # Bør også slå ut
-      - schema
-          name: Find missing columns
+      - schema:
+          name: Find forbidden, missing, or wrong type
           warn:
-            when required column missing: [team_id, source_aligned, naisteams] # er det case sensitive?
+            when required column missing: [team_id, naisteams]
