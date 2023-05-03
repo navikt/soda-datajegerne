@@ -1,4 +1,0 @@
-google-cloud-bigquery-storage==2.19.1
-pyarrow==11.0.0
-slack-sdk==3.21.2
-soda-core-bigquery==3.0.32
