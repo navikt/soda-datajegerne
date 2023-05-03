@@ -9,7 +9,7 @@ data:
       # Standard numeric opplegg
       - row_count > 0: # Kjedelig
         name: Kjedelig sjekk, korrelerer vel 100 prosent med en del av de andre sjekkene. DELETE!!
-      - freshness(dato) <1d: # Litt gøyere
+      - freshness(version) <1d: # Litt gøyere
         name: Sjekker om data er box fresh: Er de mer enn ett døgn gamle?
       - duplicate_count(dataproduct_id): # Bør slå ut siden vi appender snapshots
         name: Har vi unike dataprodukt-idz?      
