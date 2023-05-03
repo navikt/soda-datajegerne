@@ -4,22 +4,35 @@ metadata:
   name: soda-checks
   namespace: nada
 data:
-  platform_users.yaml: |
-    checks for target_group:
-      - row_count > 0 # Bør ikke slå ut
-      - missing_count(team_id) = 0 # Bør slå ut
-      - freshness(dato) < 1d # Bør også slå ut
-      - schema:
-          name: Find forbidden, missing, or wrong type
-          warn:
-            when required column missing: [team_id, naisteams]
-    checks for team_metrics:
-      - freshness(dato) <1d # Bør funke
-      - row_count > 100000 # Bør slå ut
   dataproducts.yaml: |
-    checks for contact_point: # Sjekker referential integrity
-      - values in (id) must exist in dataproducts(dataset_id) # Denne bør feile    
+    checks for classification_dataset:     
+      # Standard numeric opplegg
+      - row_count > 0: # Kjedelig
+        name: Kjedelig sjekk, korrelerer vel 100 prosent med en del av de andre sjekkene. DELETE!!
+      - freshness(dato) <1d: # Litt gøyere
+        name: Sjekker om data er box fresh: Er de mer enn ett døgn gamle?
+      - duplicate_count(dataproduct_id): # Bør slå ut siden vi appender snapshots
+        name: Har vi unike dataprodukt-idz?      
+      - values in (dataproduct_id) must exist in dataproducts(dataproduct_id): # Bør ikke slå ut! Konsistens på tvers
+        name: Sjekker om dataproduct_id i classification_datasets er et subset av dataproducts 
+      - schema: # Skjemasjekker
+        name: Sjekker om kolonner er inkludert
+        warn:
+          when required column missing: [type, kolonne_som_ikke_finnes_men_ikke_så_viktig]
+        fail:
+          when required column missing: [dataproduct_id, kolonne_som_ikke_finnes_OG_VIKTIG]
     
-    checks for datastories_materialized:
-      - row_count > 0 # Denne bør funke
+    checks for dataproducts:
+      - missing_count(dataproduct_id) = 0 # Bør ikke slå ut
+      - missing_percent(pii) < 50 %
+      
+      # Eksempler på egendefinerte sjekker
+      - datasets_relative_to_dataproducts >= 1: # Kan bruke common table expressions -> Det du har i with-clause i SQL
+        datasets_relative_to_dataprocuts expression: count(distinct dataset_id) / count(distinct dataproduct_id)
+        name: Sjekker om vi har flere datasett enn dataprodukter
+      - dataset_relative_to_dataproducts_sql >= 1: # Kan gjøre tilsvarende med SQL au
+        dataset_relative_to_dataproducts_sql query: |
+          SELECT COUNT(distinct dataset_id) - count(distinct dataproduct_id)
+          FROM dataproducts
+        name: Sjekker om vi har flere datasett enn dataprodukter, men med SQL
 

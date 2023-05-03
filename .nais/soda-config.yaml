@@ -5,16 +5,6 @@ metadata:
   namespace: nada
 data:
   config.yaml: |
-    data_source platform_users:
-      type: bigquery
-      connection:
-        project_id: nada-prod-6977
-        dataset: platform_users
-    data_source datastream_nada:
-      type: bigquery
-      connection:
-        project_id: nada-prod-6977
-        dataset: datastream_nada
     data_source dataproducts:
       type: bigquery
       connection:
