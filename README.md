@@ -28,4 +28,3 @@ The soda config and the soda check files described in [Prerequisites](#prerequis
 - The files described in the configmaps are then mounted in the `/var/run/configmaps` folder of the container. You can then set the `SODA_CONFIG` and `SODA_CHECKS_FOLDER` environment variables described in [Required environment variables](#required-environment-variables) as specified [here](https://github.com/navikt/dp-nada-soda/blob/main/.nais/naisjob.yaml#L16-L19)
 
 You will also need additional [project level iam roles](https://github.com/navikt/nada-soda/blob/main/.nais/naisjob.yaml#L32-L46) for the naisjob service account in order to be allowed to perform the soda checks. Ensure that you set the correct project id for the roles.
-
