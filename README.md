@@ -10,7 +10,7 @@ The script run by the dockerimage requires
 
 All of the above requirements must be configured with environment variables as described in [Required environment variables](#required-environment-variables) below. 
 
->Note: The script requires that a datasource name matches the file name for the corresponding data quality tests, e.g. [./local/soda-checks/doc_demo.yaml](https://github.com/navikt/dp-nada-soda/tree/main/.local/soda-checks) without file extension must match the datasource name `doc_demo` in the [connection config](https://github.com/navikt/dp-nada-soda/blob/main/.local/soda-config/config.yaml#L1).
+>Note: The script requires that a datasource name matches the file name for the corresponding data quality tests, e.g. [./local/soda-checks/doc_demo.yaml](https://github.com/navikt/dp-nada-soda/tree/main/.local/soda-checks/doc_demo.yaml) without file extension must match the datasource name `doc_demo` in the [connection config](https://github.com/navikt/dp-nada-soda/blob/main/.local/soda-config/config.yaml#L1).
 
 ### Required environment variables
 - `SODA_CONFIG`: Path to soda config file
