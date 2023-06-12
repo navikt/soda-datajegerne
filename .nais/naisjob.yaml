@@ -6,7 +6,7 @@ metadata:
   name: dataobs-soda-nada
   namespace: nada
 spec:
-  image: ghcr.io/navikt/nada-soda:2023-06-12-4a374e4
+  image: ghcr.io/navikt/nada-soda:2023-06-12-ac65194
   accessPolicy:
     outbound:
       rules:
