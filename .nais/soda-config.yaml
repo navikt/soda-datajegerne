@@ -7,6 +7,5 @@ data:
   config.yaml: |
     data_source dataproducts:
       type: bigquery
-      connection:
-        project_id: nada-prod-6977
-        dataset: dataproducts
+      project_id: nada-prod-6977
+      dataset: dataproducts
