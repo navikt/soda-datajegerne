@@ -1,5 +1,4 @@
 data_source platform_users:
   type: bigquery
-  connection:
-    project_id: nada-prod-6977
-    dataset: platform_users
+  project_id: nada-prod-6977
+  dataset: platform_users
