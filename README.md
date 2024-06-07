@@ -18,7 +18,7 @@ All of the above requirements must be configured with environment variables as d
 - `SLACK_CHANNEL`: Desired slack channel for posting data quality errors
 
 ### Optional environment variables
-- `NOTIFY_OK_SCAN_STATUS`: Set to "true" if you want enabel slack notifications for passing soda scans
+- `NOTIFY_OK_SCAN_STATUS`: Set to "true" if you want enable slack notifications for passing soda scans (requires [soda docker image](https://github.com/navikt/nada-soda) version >= `2024.06.07-06.31-207dd07`)
 
 ## Deploy nais
 To deploy to nais you can start from the [example naisjob yaml](https://github.com/navikt/dp-nada-soda/blob/main/.nais/naisjob.yaml) and modify this for your setup.
