@@ -19,6 +19,8 @@ spec:
       value: /var/run/configmaps/soda-checks
     - name: SLACK_CHANNEL
       value: "#soda-test"
+    - name: NOTIFY_OK_SCAN_STATUS
+      value: "true"
   schedule: '15 11 * * *'
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
