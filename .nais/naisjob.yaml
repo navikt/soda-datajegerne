@@ -2,26 +2,26 @@ apiVersion: nais.io/v1
 kind: Naisjob
 metadata:
   labels:
-    team: nada
-  name: dataobs-soda-nada
-  namespace: nada
+    team: datajegerne
+  name: dataobs-soda-datajegerne
+  namespace: datajegerne
 spec:
   image: europe-north1-docker.pkg.dev/nais-management-233d/nada/nada-soda:2024.07.15-10.50-6a62e42
   accessPolicy:
     outbound:
       rules:
-        - application: nada-soda
-          namespace: nada
+        - application: datajegerne-soda
+          namespace: datajegerne
   env:
     - name: SODA_CONFIG
       value: /var/run/configmaps/soda-config/config.yaml
     - name: SODA_CHECKS_FOLDER
       value: /var/run/configmaps/soda-checks
     - name: SLACK_CHANNEL
-      value: "#soda-test"
+      value: "#test-datajegerne-alerts"
     - name: NOTIFY_OK_SCAN_STATUS
       value: "true"
-  schedule: '15 11 * * *'
+  schedule: '00 07 * * *'
   failedJobsHistoryLimit: 1
   successfulJobsHistoryLimit: 1
   backoffLimit: 1
@@ -34,15 +34,15 @@ spec:
     - resource:
         apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
         kind: Project
-        name: nada-prod-6977
+        name: teamdatajegerne-prod-c8b1
       role: roles/bigquery.readSessionUser
     - resource:
         apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
         kind: Project
-        name: nada-prod-6977
+        name: teamdatajegerne-prod-c8b1
       role: roles/bigquery.dataViewer
     - resource:
         apiVersion: resourcemanager.cnrm.cloud.google.com/v1beta1
         kind: Project
-        name: nada-prod-6977
+        name: teamdatajegerne-prod-c8b1
       role: roles/bigquery.jobUser

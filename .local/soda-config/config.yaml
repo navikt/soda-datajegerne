@@ -1,4 +1,4 @@
 data_source platform_users:
   type: bigquery
-  project_id: nada-prod-6977
+  project_id: teamdatajegerne-prod-c8b1
   dataset: platform_users
