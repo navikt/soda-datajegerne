@@ -2,16 +2,16 @@ apiVersion: nais.io/v1
 kind: Naisjob
 metadata:
   labels:
-    team: datajegerne
+    team: teamdatajegerne
   name: dataobs-soda-datajegerne
-  namespace: datajegerne
+  namespace: teamdatajegerne
 spec:
   image: europe-north1-docker.pkg.dev/nais-management-233d/nada/nada-soda:2024.07.15-10.50-6a62e42
   accessPolicy:
     outbound:
       rules:
         - application: datajegerne-soda
-          namespace: datajegerne
+          namespace: teamdatajegerne
   env:
     - name: SODA_CONFIG
       value: /var/run/configmaps/soda-config/config.yaml

@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: soda-checks
-  namespace: datajegerne
+  namespace: teamdatajegerne
 data:
   metrics.yaml: |
     checks for duplikater_etterlevelse:

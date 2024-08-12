@@ -1,3 +1,3 @@
 checks for public_datasets:
   - missing_count(dataproduct_id) = 1
-  - missing_count(id) = 0 
+  - missing_count(id) = 0
