@@ -18,7 +18,7 @@ spec:
     - name: SODA_CHECKS_FOLDER
       value: /var/run/configmaps/soda-checks
     - name: SLACK_CHANNEL
-      value: "#test-datajegerne-alerts"
+      value: "#etterlevelse-alerts"
     - name: NOTIFY_OK_SCAN_STATUS
       value: "true"
   schedule: '00 07 * * *'
